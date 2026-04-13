@@ -13,5 +13,7 @@ venv/
 .ruff_cache/
 .nanocoder_history
 .DS_Store
+*¼òÀú*
+*.resume.*
 dist/
 .pytest_cache/
