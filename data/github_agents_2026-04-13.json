@@ -1,0 +1,182 @@
+[
+  {
+    "name": "dify",
+    "full_name": "langgenius/dify",
+    "description": "Production-ready platform for agentic workflow development.",
+    "stargazers_count": 137544,
+    "html_url": "https://github.com/langgenius/dify",
+    "language": "TypeScript",
+    "updated_at": "2026-04-13T10:33:03Z"
+  },
+  {
+    "name": "langchain",
+    "full_name": "langchain-ai/langchain",
+    "description": "The agent engineering platform",
+    "stargazers_count": 133373,
+    "html_url": "https://github.com/langchain-ai/langchain",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:25:15Z"
+  },
+  {
+    "name": "firecrawl",
+    "full_name": "firecrawl/firecrawl",
+    "description": "🔥 The Web Data API for AI - Power AI agents with clean web data",
+    "stargazers_count": 108371,
+    "html_url": "https://github.com/firecrawl/firecrawl",
+    "language": "TypeScript",
+    "updated_at": "2026-04-13T10:27:17Z"
+  },
+  {
+    "name": "awesome-llm-apps",
+    "full_name": "Shubhamsaboo/awesome-llm-apps",
+    "description": "Collection of awesome LLM apps with AI Agents and RAG using OpenAI, Anthropic, Gemini and opensource models.",
+    "stargazers_count": 105274,
+    "html_url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:22:47Z"
+  },
+  {
+    "name": "browser-use",
+    "full_name": "browser-use/browser-use",
+    "description": "🌐 Make websites accessible for AI agents. Automate tasks online with ease.",
+    "stargazers_count": 87548,
+    "html_url": "https://github.com/browser-use/browser-use",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:32:10Z"
+  },
+  {
+    "name": "ragflow",
+    "full_name": "infiniflow/ragflow",
+    "description": "RAGFlow is a leading open-source Retrieval-Augmented Generation (RAG) engine that fuses cutting-edge RAG with Agent capabilities to create a superior context layer for LLMs",
+    "stargazers_count": 77896,
+    "html_url": "https://github.com/infiniflow/ragflow",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:30:57Z"
+  },
+  {
+    "name": "hermes-agent",
+    "full_name": "NousResearch/hermes-agent",
+    "description": "The agent that grows with you",
+    "stargazers_count": 73410,
+    "html_url": "https://github.com/NousResearch/hermes-agent",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:33:29Z"
+  },
+  {
+    "name": "OpenHands",
+    "full_name": "OpenHands/OpenHands",
+    "description": "🙌 OpenHands: AI-Driven Development",
+    "stargazers_count": 71106,
+    "html_url": "https://github.com/OpenHands/OpenHands",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:30:17Z"
+  },
+  {
+    "name": "LlamaFactory",
+    "full_name": "hiyouga/LlamaFactory",
+    "description": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)",
+    "stargazers_count": 70018,
+    "html_url": "https://github.com/hiyouga/LlamaFactory",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:30:39Z"
+  },
+  {
+    "name": "MetaGPT",
+    "full_name": "FoundationAgents/MetaGPT",
+    "description": "🌟 The Multi-Agent Framework: First AI Software Company, Towards Natural Language Programming",
+    "stargazers_count": 66994,
+    "html_url": "https://github.com/FoundationAgents/MetaGPT",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:04:02Z"
+  },
+  {
+    "name": "deer-flow",
+    "full_name": "bytedance/deer-flow",
+    "description": "An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes, memories, tools, skill, subagents and message gateway, it handles different levels of tasks that could take minutes to hours.",
+    "stargazers_count": 61007,
+    "html_url": "https://github.com/bytedance/deer-flow",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:31:43Z"
+  },
+  {
+    "name": "mem0",
+    "full_name": "mem0ai/mem0",
+    "description": "Universal memory layer for AI Agents",
+    "stargazers_count": 52870,
+    "html_url": "https://github.com/mem0ai/mem0",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:26:30Z"
+  },
+  {
+    "name": "JeecgBoot",
+    "full_name": "jeecgboot/JeecgBoot",
+    "description": "一款 AI 驱动的低代码平台，提供\"零代码\"与\"代码生成\"双模式——零代码模式一句话搭建系统，代码生成模式自动输出前后端代码与建表 SQL，生成即可运行。平台内置 AI 聊天助手、AI大模型、知识库、AI流程编排、MCP 与插件体系，兼容主流大模型，支持一句话生成流程图、设计表单、聊天式业务操作，解决 Java 项目 80% 重复工作，高效且不失灵活。",
+    "stargazers_count": 45826,
+    "html_url": "https://github.com/jeecgboot/JeecgBoot",
+    "language": "Java",
+    "updated_at": "2026-04-13T09:55:18Z"
+  },
+  {
+    "name": "cherry-studio",
+    "full_name": "CherryHQ/cherry-studio",
+    "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
+    "stargazers_count": 43405,
+    "html_url": "https://github.com/CherryHQ/cherry-studio",
+    "language": "TypeScript",
+    "updated_at": "2026-04-13T10:07:16Z"
+  },
+  {
+    "name": "CowAgent",
+    "full_name": "zhayujie/CowAgent",
+    "description": "CowAgent (chatgpt-on-wechat) 是基于大模型的超级AI助理，能主动思考和任务规划、访问操作系统和外部资源、创造和执行Skills、通过长期记忆和知识库不断成长，比OpenClaw更轻量和便捷。同时支持微信、飞书、钉钉、企微、QQ、公众号、网页等接入，可选择OpenAI/Claude/Gemini/DeepSeek/ Qwen/GLM/Kimi/LinkAI，能处理文本、语音、图片和文件，可快速搭建个人AI助理和企业数字员工。",
+    "stargazers_count": 43075,
+    "html_url": "https://github.com/zhayujie/CowAgent",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:25:00Z"
+  },
+  {
+    "name": "goose",
+    "full_name": "aaif-goose/goose",
+    "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+    "stargazers_count": 41634,
+    "html_url": "https://github.com/aaif-goose/goose",
+    "language": "Rust",
+    "updated_at": "2026-04-13T10:24:38Z"
+  },
+  {
+    "name": "nanobot",
+    "full_name": "HKUDS/nanobot",
+    "description": "\"🐈 nanobot: The Ultra-Lightweight Personal AI Agent\"",
+    "stargazers_count": 39313,
+    "html_url": "https://github.com/HKUDS/nanobot",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:07:58Z"
+  },
+  {
+    "name": "AgentGPT",
+    "full_name": "reworkd/AgentGPT",
+    "description": "🤖 Assemble, configure, and deploy autonomous AI Agents in your browser.",
+    "stargazers_count": 35975,
+    "html_url": "https://github.com/reworkd/AgentGPT",
+    "language": "TypeScript",
+    "updated_at": "2026-04-13T09:34:56Z"
+  },
+  {
+    "name": "pi-mono",
+    "full_name": "badlogic/pi-mono",
+    "description": "AI agent toolkit: coding agent CLI, unified LLM API, TUI & web UI libraries, Slack bot, vLLM pods",
+    "stargazers_count": 35030,
+    "html_url": "https://github.com/badlogic/pi-mono",
+    "language": "TypeScript",
+    "updated_at": "2026-04-13T10:31:36Z"
+  },
+  {
+    "name": "khoj",
+    "full_name": "khoj-ai/khoj",
+    "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
+    "stargazers_count": 34048,
+    "html_url": "https://github.com/khoj-ai/khoj",
+    "language": "Python",
+    "updated_at": "2026-04-13T10:28:50Z"
+  }
+]
