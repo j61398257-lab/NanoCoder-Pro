@@ -7,6 +7,7 @@ from .edit import EditFileTool
 from .glob_tool import GlobTool
 from .grep import GrepTool
 from .agent import AgentTool
+from .http import HttpTool
 
 ALL_TOOLS = [
     BashTool(),
@@ -16,6 +17,7 @@ ALL_TOOLS = [
     GlobTool(),
     GrepTool(),
     AgentTool(),
+    HttpTool(),
 ]
 
 

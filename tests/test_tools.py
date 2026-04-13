@@ -9,7 +9,7 @@ from nanocoder.tools import ALL_TOOLS, get_tool
 
 
 def test_tool_count():
-    assert len(ALL_TOOLS) == 7
+    assert len(ALL_TOOLS) == 8
 
 
 def test_all_tools_have_valid_schema():
@@ -200,3 +200,33 @@ def test_agent_tool_schema():
     s = agent_t.schema()
     assert s["function"]["name"] == "agent"
     assert "task" in s["function"]["parameters"]["properties"]
+
+
+# --- http ---
+
+def test_http_get_public():
+    http = get_tool("http")
+    r = http.execute(url="https://httpbin.org/get")
+    assert "[HTTP 200]" in r
+    assert "httpbin" in r.lower() or "origin" in r.lower()
+
+
+def test_http_get_with_params():
+    http = get_tool("http")
+    r = http.execute(url="https://httpbin.org/get", params={"foo": "bar"})
+    assert "[HTTP 200]" in r
+    assert "bar" in r
+
+
+def test_http_invalid_url():
+    http = get_tool("http")
+    r = http.execute(url="http://localhost:19999/nonexistent")
+    assert "Error" in r or "error" in r.lower()
+
+
+def test_http_schema():
+    http = get_tool("http")
+    s = http.schema()
+    assert s["function"]["name"] == "http"
+    assert "url" in s["function"]["parameters"]["properties"]
+    assert "url" in s["function"]["parameters"]["required"]
