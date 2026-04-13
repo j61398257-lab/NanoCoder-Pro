@@ -1,12 +1,4 @@
-# AI-Agent Related GitHub Projects (Latest)
-| gov-mcp | https://github.com/liuhaotian2024-prog/gov-mcp |
-| Cyberflux2.0 | https://github.com/chandelcse812-prog/Cyberflux2.0 |
-| MathCrew | https://github.com/minouza/MathCrew |
-| agents | https://github.com/wyattowalsh/agents |
-| Versiona | https://github.com/3225112908/Versiona |
-| automatos-ai | https://github.com/AutomatosAI/automatos-ai |
-| smarthire-ai | https://github.com/Jeyasrisandhana/smarthire-ai |
-| agent-memory-unified | https://github.com/matthewbspeicher/agent-memory-unified |
+# AI-Agent Related GitHub Projects
 | Secure-Agent-Launcher | https://github.com/fobi28/Secure-Agent-Launcher |
 | rynxs-agentos | https://github.com/marcosfelipesrb/rynxs-agentos |
 | data-agent-forge | https://github.com/Deregit2025/data-agent-forge |
@@ -19,3 +11,11 @@
 | ag402 | https://github.com/Eniitanire/ag402 |
 | omniclaw | https://github.com/AlexanderFarhan/omniclaw |
 | JanSahayak | https://github.com/shreyas07-anonymous/JanSahayak |
+| tradememory-protocol | https://github.com/Eltano1985/tradememory-protocol |
+| cloglog | https://github.com/sachinkundu/cloglog |
+| firmware-debug-openenv | https://github.com/Ayush-Kadali/firmware-debug-openenv |
+| travel-search-ru | https://github.com/MissiaL/travel-search-ru |
+| vibe-local | https://github.com/manindersingh130/vibe-local |
+| agent-colony-pattern | https://github.com/DavidROliverBA/agent-colony-pattern |
+| neoxyber-qsag | https://github.com/Neoxyber/neoxyber-qsag |
+| skills | https://github.com/tayyabexe/skills |

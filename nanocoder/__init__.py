@@ -10,11 +10,13 @@ from nanocoder.memory import Memory
 from nanocoder.planner import Planner, Plan
 from nanocoder.gateway import Gateway, ModelProfile
 from nanocoder.eval import Evaluator, EvalResult
+from nanocoder.master import MasterLoop, GoalResult
 
 __all__ = [
     "Agent", "LLM", "Config", "ALL_TOOLS",
     "Memory", "Planner", "Plan",
     "Gateway", "ModelProfile",
     "Evaluator", "EvalResult",
+    "MasterLoop", "GoalResult",
     "__version__",
 ]

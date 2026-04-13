@@ -1,66 +1,48 @@
+import requests
 import json
 import os
-import urllib.request
-from datetime import datetime, timedelta, timezone
+
+def fetch_github_projects(query, per_page=20, sort='updated', order='desc'):
+    """Fetch GitHub projects based on the query."""
+    url = f"https://api.github.com/search/repositories?q={query}&sort={sort}&order={order}&per_page={per_page}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Failed to fetch data: {response.status_code}")
 
 
-def fetch_github_repos():
-    query = "q=AI+agent+llm&sort=stars&order=desc&per_page=100"
-    url = "https://api.github.com/search/repositories?" + query
-    req = urllib.request.Request(url, headers={"User-Agent": "NanoCoder-Crawler/1.0"})
-    print("[1/3] Fetching from GitHub API ...")
-    with urllib.request.urlopen(req, timeout=30) as response:
-        data = json.loads(response.read())
-    print(f"      Got {len(data['items'])} repos total")
-    return data["items"]
+def filter_ai_agent_projects(projects):
+    """Filter projects related to AI-agent."""
+    filtered_projects = []
+    for project in projects['items']:
+        description = project.get('description', '')
+        if description and ('AI' in description or 'agent' in description.lower()):
+            filtered_projects.append(project)
+    return filtered_projects
 
 
-def filter_repos(repos):
-    seven_days_ago = datetime.now(timezone.utc) - timedelta(days=7)
-    filtered = [
-        repo for repo in repos
-        if datetime.strptime(repo["updated_at"], "%Y-%m-%dT%H:%M:%SZ").replace(
-            tzinfo=timezone.utc
-        ) > seven_days_ago
-    ]
-    print(f"[2/3] After 7-day filter: {len(filtered)} repos -> taking top 20")
-    return filtered[:20]
+def save_projects(projects, output_dir, filename):
+    """Save projects to JSON and Markdown files."""
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    json_path = os.path.join(output_dir, f"{filename}.json")
+    with open(json_path, 'w') as f:
+        json.dump(projects, f, indent=4)
+    
+    markdown_path = os.path.join(output_dir, f"{filename}.md")
+    with open(markdown_path, 'w') as f:
+        f.write("# AI-Agent Related GitHub Projects (Latest)\n")
+        for project in projects:
+            f.write(f"| {project['name']} | {project['html_url']} |\n")
 
 
-def save_results(repos):
-    os.makedirs("data", exist_ok=True)
-    today = datetime.now().strftime("%Y-%m-%d")
-    json_path = f"data/github_agents_{today}.json"
-    md_path = "data/github_agents_latest.md"
-
-    fields = ["name", "full_name", "description", "stargazers_count",
-              "html_url", "language", "updated_at"]
-    records = [{f: repo.get(f) for f in fields} for repo in repos]
-
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(records, f, ensure_ascii=False, indent=2)
-
-    with open(md_path, "w", encoding="utf-8") as f:
-        f.write("| Name | Full Name | Description | Stars | URL | Language | Updated At |\n")
-        f.write("|------|-----------|-------------|-------|-----|----------|------------|\n")
-        for r in records:
-            name = r["name"] or ""
-            full_name = r["full_name"] or ""
-            desc = (r["description"] or "")[:80].replace("|", "/")
-            stars = r["stargazers_count"] or 0
-            url = r["html_url"] or ""
-            lang = r["language"] or ""
-            updated = r["updated_at"] or ""
-            f.write(f"| {name} | {full_name} | {desc} | {stars} | {url} | {lang} | {updated} |\n")
-
-    print(f"[3/3] Saved results:")
-    print(f"      JSON -> {json_path}")
-    print(f"      MD   -> {md_path}")
-    return json_path, md_path
-
+def main():
+    query = "AI-agent language:python created:>=2023-03-01"
+    projects = fetch_github_projects(query)
+    ai_agent_projects = filter_ai_agent_projects(projects)
+    save_projects(ai_agent_projects, 'data', 'github_agents_latest')
 
 if __name__ == "__main__":
-    repos = fetch_github_repos()
-    top20 = filter_repos(repos)
-    json_path, md_path = save_results(top20)
-    print(f"\nDone! Fetched {len(top20)} agent-related repos.")
+    main()

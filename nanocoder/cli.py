@@ -14,6 +14,7 @@ from .agent import Agent
 from .llm import LLM
 from .config import Config
 from .gateway import Gateway, ModelProfile
+from .master import MasterLoop
 from .session import save_session, load_session, list_sessions
 from . import __version__
 
@@ -167,12 +168,12 @@ def _repl(agent: Agent, config: Config, gateway: Gateway | None = None):
             compressed = agent.context.maybe_compress(agent.messages, agent.llm)
             after = estimate_tokens(agent.messages)
             if compressed:
-                console.print(f"[green]Compressed: {before} éˆ«? {after} tokens ({len(agent.messages)} messages)[/green]")
+                console.print(f"[green]Compressed: {before} éˆ?? {after} tokens ({len(agent.messages)} messages)[/green]")
             else:
                 console.print(f"[dim]Nothing to compress ({before} tokens, {len(agent.messages)} messages)[/dim]")
             continue
         if user_input == "/plan":
-            console.print("[cyan]Plan Mode ON â€” next message will trigger plan-then-execute.[/cyan]")
+            console.print("[cyan]Plan Mode ON â€? next message will trigger plan-then-execute.[/cyan]")
             try:
                 plan_input = pt_prompt("Plan > ", history=history).strip()
             except (EOFError, KeyboardInterrupt):
@@ -227,6 +228,9 @@ def _repl(agent: Agent, config: Config, gateway: Gateway | None = None):
             state = "ON" if agent.auto_eval else "OFF"
             console.print(f"[cyan]Auto-eval is now {state}[/cyan]")
             continue
+        if user_input == "/goal":
+            _run_goal(agent.llm)
+            continue
         if user_input == "/save":
             sid = save_session(agent.messages, config.model)
             console.print(f"[green]Session saved: {sid}[/green]")
@@ -264,6 +268,83 @@ def _repl(agent: Agent, config: Config, gateway: Gateway | None = None):
             console.print(f"\n[red]Error: {e}[/red]")
 
 
+def _run_goal(llm):
+    """Interactive /goal command: set goal + criteria, run MasterLoop."""
+    console.print("[cyan]Goal Mode: Master-SubAgent autonomous loop[/cyan]")
+    try:
+        goal = pt_prompt("Goal > ").strip()
+    except (EOFError, KeyboardInterrupt):
+        return
+    if not goal:
+        return
+
+    console.print("[dim]Enter criteria (one per line, empty line to finish):[/dim]")
+    criteria = []
+    check_cmds = []
+    while True:
+        try:
+            line = pt_prompt(f"  criteria {len(criteria)+1} > ").strip()
+        except (EOFError, KeyboardInterrupt):
+            break
+        if not line:
+            break
+        # optional: "criterion ||| check_command" syntax
+        if "|||" in line:
+            desc, cmd = line.split("|||", 1)
+            criteria.append(desc.strip())
+            check_cmds.append(cmd.strip())
+        else:
+            criteria.append(line)
+            check_cmds.append(None)
+
+    if not criteria:
+        console.print("[yellow]No criteria entered, cancelled.[/yellow]")
+        return
+
+    console.print(f"\n[bold]Goal:[/bold] {goal}")
+    for i, c in enumerate(criteria):
+        cmd_hint = f"  [dim](check: {check_cmds[i]})[/dim]" if check_cmds[i] else ""
+        console.print(f"  {i+1}. {c}{cmd_hint}")
+    console.print()
+
+    master = MasterLoop(llm=llm, max_iterations=10, max_sub_rounds=40)
+
+    def on_iteration(iteration, items):
+        met_count = sum(1 for c in items if c.met)
+        console.print(f"\n[bold yellow]--- Iteration {iteration} check: "
+                       f"{met_count}/{len(items)} criteria met ---[/bold yellow]")
+        for i, c in enumerate(items):
+            mark = "[green][x][/green]" if c.met else "[red][ ][/red]"
+            console.print(f"  {mark} {i+1}. {c.description}")
+            if c.reason and not c.met:
+                console.print(f"       [dim]{c.reason}[/dim]")
+        console.print()
+
+    def on_tool(name, kwargs):
+        brief = ", ".join(f"{k}={repr(v)[:40]}" for k, v in kwargs.items())
+        console.print(f"[dim]> {name}({brief[:100]})[/dim]")
+
+    def on_token(tok):
+        print(tok, end="", flush=True)
+
+    try:
+        result = master.run(
+            goal=goal,
+            criteria=criteria,
+            check_cmds=check_cmds,
+            on_iteration=on_iteration,
+            on_tool=on_tool,
+            on_token=on_token,
+        )
+        print()
+        console.print(Panel(result.summary(), title="Goal Result",
+                            border_style="green" if result.met else "red"))
+    except KeyboardInterrupt:
+        console.print("\n[yellow]Goal interrupted.[/yellow]")
+    except Exception as e:
+        console.print(f"\n[red]Error: {e}[/red]")
+
+
 def _show_help():
     console.print(Panel(
         "[bold]Commands:[/bold]\n"
@@ -273,6 +354,7 @@ def _show_help():
         "  /tokens        Show token usage\n"
         "  /compact       Compress conversation context\n"
         "  /plan          Plan Mode: plan first, then execute\n"
+        "  /goal          Goal Mode: Master-SubAgent loop until criteria met\n"
         "  /memory        Show stored long-term memories\n"
         "  /eval          Toggle auto-eval (syntax check + tests after edits)\n"
         "  /gateway       Show current model routing info\n"
