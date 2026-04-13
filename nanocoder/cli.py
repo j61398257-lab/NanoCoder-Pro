@@ -167,12 +167,12 @@ def _repl(agent: Agent, config: Config, gateway: Gateway | None = None):
             compressed = agent.context.maybe_compress(agent.messages, agent.llm)
             after = estimate_tokens(agent.messages)
             if compressed:
-                console.print(f"[green]Compressed: {before} â†? {after} tokens ({len(agent.messages)} messages)[/green]")
+                console.print(f"[green]Compressed: {before} éˆ«? {after} tokens ({len(agent.messages)} messages)[/green]")
             else:
                 console.print(f"[dim]Nothing to compress ({before} tokens, {len(agent.messages)} messages)[/dim]")
             continue
         if user_input == "/plan":
-            console.print("[cyan]Plan Mode ON ¡ª next message will trigger plan-then-execute.[/cyan]")
+            console.print("[cyan]Plan Mode ON â€” next message will trigger plan-then-execute.[/cyan]")
             try:
                 plan_input = pt_prompt("Plan > ", history=history).strip()
             except (EOFError, KeyboardInterrupt):

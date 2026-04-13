@@ -1,4 +1,4 @@
-"""Plan Mode ¡ª 'think before act' two-stage execution.
+"""Plan Mode â€” 'think before act' two-stage execution.
 
 Stage 1: Planner LLM produces a structured step-by-step plan.
 Stage 2: Executor (the normal Agent loop) follows the plan step by step.
@@ -26,7 +26,7 @@ Output format (strict):
 
 Rules:
 - Each step should be a concrete, executable action (e.g. "Read file X", "Edit function Y in Z").
-- Keep steps atomic ¡ª one file or one logical change per step.
+- Keep steps atomic â€” one file or one logical change per step.
 - Do NOT include code. Only describe what to do.
 - Number each step starting from 1.
 - End with a step that verifies the result (e.g. "Run tests", "Check output").

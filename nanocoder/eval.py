@@ -1,4 +1,4 @@
-"""Eval ¡ª automatic verification and self-healing.
+"""Eval â€” automatic verification and self-healing.
 
 After the agent finishes a task, Eval checks if the result is correct by:
   1. Running linter / type checker on modified files

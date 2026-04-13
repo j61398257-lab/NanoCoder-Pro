@@ -1,4 +1,4 @@
-"""Long-term memory ¡ª persist key facts across sessions.
+"""Long-term memory - persist key facts across sessions.
 
 Two layers:
   Short-term = self.messages (already in agent.py)

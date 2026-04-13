@@ -1,4 +1,4 @@
-"""Gateway ¡ª multi-model routing and automatic fallback.
+"""Gateway â€” multi-model routing and automatic fallback.
 
 Inspired by:
   - LiteLLM's unified interface (100+ providers behind one API)
@@ -135,7 +135,7 @@ class Gateway:
         lines = ["Gateway Model Stats:", ""]
         for p in self._profiles:
             lines.append(
-                f"  {p.name} [{p.tier}] ¡ª "
+                f"  {p.name} [{p.tier}] â€” "
                 f"calls: {p.total_calls}, errors: {p.total_errors}, "
                 f"latency: {p.avg_latency_ms:.0f}ms"
             )
