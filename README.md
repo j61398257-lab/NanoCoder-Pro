@@ -3,9 +3,9 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**2200 行 Python 构建的自主编程 Agent，具备 Master-SubAgent 循环架构。**
+**Claude Code 的 Python 核心实现 — 2200 行构建的自主编程 Agent，具备 Master-SubAgent 循环架构。**
 
-在 [NanoCoder](https://github.com/he-yufeng/NanoCoder)（~1300 行）基础上扩展而来。原始项目将 Claude Code 的 512K 行 TypeScript 蒸馏为 Python 实现，保留了 7 个核心架构模式。Pro 版在此基础上新增 5 大模块，从"能用的 demo"进化为"能自主完成复杂编程任务的 Agent"。
+逆向分析 Claude Code 的 512K 行 TypeScript 源码，提炼出全部核心架构模式，用 Python 重新实现。在 7 个基础架构模式之上，新增 5 大增强模块（长期记忆、计划模式、多模型路由、自动验证、Master-SubAgent 自主循环），打造一个能自主完成复杂编程任务的 Coding Agent。
 
 ---
 
@@ -30,7 +30,7 @@ You > 读一下 main.py，修掉拼错的 import
 
 ## 核心特性
 
-### 原始架构（继承自 NanoCoder）
+### 基础架构（源自 Claude Code 核心模式）
 
 | 能力 | 实现 |
 |------|------|
@@ -42,11 +42,11 @@ You > 读一下 main.py，修掉拼错的 import
 | 会话持久化 | `session.py` — JSON 存档/恢复 |
 | 搜索替换编辑 | `tools/edit.py` — 唯一匹配 + diff |
 
-### Pro 版新增（5 大模块）
+### 增强模块（5 大创新）
 
 #### 1. Master-SubAgent 自主循环（master.py）
 
-**Pro 版最核心的创新。** 普通 Agent 执行一次就停，MasterLoop 确保任务完完全全完成。
+**最核心的创新。** 普通 Agent 执行一次就停，MasterLoop 确保任务完完全全完成。
 
 ```
 用户设定: goal（目标） + criteria（完成判据）
@@ -259,18 +259,6 @@ pytest -v
 | `test_core.py` | 10 | 版本号、公共 API、Config、Context 压缩、Session |
 | `test_tools.py` | 25 | 8 个工具的功能和边界情况 |
 | `test_master.py` | 10 | MasterLoop 循环逻辑、criteria 判定、JSON 解析 |
-
-## 与原始版本对比
-
-| 能力 | NanoCoder（1300 行） | NanoCoder Pro（2200 行） |
-|------|---------------------|-------------------------|
-| 工具数 | 7 | 8（+http） |
-| 记忆 | 仅当前对话 | 跨会话长期记忆 |
-| 任务规划 | 无 | Plan-and-Execute |
-| 模型选择 | 固定单模型 | 多模型路由 + fallback |
-| 结果验证 | 无 | 自动 lint + test + 自愈 |
-| 自主循环 | 无 | Master-SubAgent 目标驱动 |
-| CLI 命令 | 7 个 | 12 个 |
 
 ## 技术文档
 
