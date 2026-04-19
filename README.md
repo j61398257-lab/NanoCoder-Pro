@@ -3,9 +3,9 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**Claude Code 的 Python 核心实现 — 2200 行构建的自主编程 Agent，具备 Master-SubAgent 循环架构。**
+**Claude Code 的 Python 核心实现，2200 行构建的自主编程 Agent，具备 Master-SubAgent 循环架构。**
 
-逆向分析 Claude Code 的 512K 行 TypeScript 源码，提炼出全部核心架构模式，用 Python 重新实现。在 7 个基础架构模式之上，新增 5 大增强模块（长期记忆、计划模式、多模型路由、自动验证、Master-SubAgent 自主循环），打造一个能自主完成复杂编程任务的 Coding Agent。
+对 Claude Code 的 512K 行 TypeScript 源码进行结构拆解后，将其核心机制用 Python 重新实现。在 7 个基础架构模式之上，补充 5 个增强模块：长期记忆、计划模式、多模型路由、自动验证、Master-SubAgent 自主循环。
 
 ---
 
@@ -42,11 +42,11 @@ You > 读一下 main.py，修掉拼错的 import
 | 会话持久化 | `session.py` — JSON 存档/恢复 |
 | 搜索替换编辑 | `tools/edit.py` — 唯一匹配 + diff |
 
-### 增强模块（5 大创新）
+### 增强模块（5 个）
 
 #### 1. Master-SubAgent 自主循环（master.py）
 
-**最核心的创新。** 普通 Agent 执行一次就停，MasterLoop 确保任务完完全全完成。
+普通 Agent 往往在单轮执行后停止，`MasterLoop` 用目标与判据驱动持续执行，直到满足完成条件或达到迭代上限。
 
 ```
 用户设定: goal（目标） + criteria（完成判据）
@@ -67,7 +67,7 @@ You > 读一下 main.py，修掉拼错的 import
             NO → 构造 continue prompt → 回到 SubAgent
 ```
 
-实战验证：SubAgent 自主编写 GitHub 爬虫，写代码 → 运行出错 → 读代码 → 修 bug → 再运行 → 检查产出 → 循环直到正确。**全程零人工代码介入。**
+一次典型流程是：SubAgent 编写代码，运行后读取错误信息并修复，再由 Master 根据 `criteria` 和 `check_cmds` 继续检查，直到结果满足要求。
 
 #### 2. 长期记忆（memory.py）
 
@@ -139,8 +139,8 @@ nanocoder/                          ~2200 行
 ## 安装
 
 ```bash
-git clone https://github.com/j61398257-lab/NanoCoder.git
-cd NanoCoder
+git clone https://github.com/j61398257-lab/NanoCoder-Pro.git
+cd NanoCoder-Pro
 pip install -e .
 ```
 
