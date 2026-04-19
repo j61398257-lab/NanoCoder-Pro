@@ -260,11 +260,6 @@ pytest -v
 | `test_tools.py` | 25 | 8 个工具的功能和边界情况 |
 | `test_master.py` | 10 | MasterLoop 循环逻辑、criteria 判定、JSON 解析 |
 
-## 技术文档
-
-- [项目完整 Walkthrough](docs/NanoCoder-Pro-Walkthrough.md) — 架构、实现、调试全过程
-- [Claude Code 源码深度导读（7 篇）](article/) — Agent 循环、工具系统、上下文压缩、流式执行、多 Agent、隐藏功能
-
 ## License
 
 MIT
